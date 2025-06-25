@@ -6,12 +6,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
-  const PORT = process.env.PORT ?? 3000;
-  const HOST = '192.168.18.22';  // Asegúrate de que esta IP sea la correcta de tu máquina en la red
+  const PORT = process.env.PORT || 3003;
+  await app.listen(PORT, '0.0.0.0');
 
-  await app.listen(PORT, HOST);  // ESTA LÍNEA DEBE ESTAR ACTIVA
-
-  console.log(`Application is running on http://${HOST}:${PORT}`);
+  console.log(`🚀 App corriendo en http://0.0.0.0:${PORT}`);
 }
 bootstrap();
 
